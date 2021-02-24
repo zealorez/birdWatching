@@ -7,13 +7,27 @@ import moment from 'moment';
 import jsSHA from 'jssha';
 
 const SALT = 'banana';
+const PORT = process.argv[2];
 
-const pgConnectionConfigs = {
-  user: 'zephaniahong',
-  host: 'localhost',
-  database: 'birding',
-  port: 5432,
-};
+let pgConnectionConfigs;
+
+if (process.env.ENV === 'PRODUCTION') {
+  pgConnectionConfigs = {
+    user: 'postgres',
+    password: process.env.DB_PASSWORD,
+    host: 'localhost',
+    database: 'birding',
+    port: 5432,
+  };
+} else {
+  pgConnectionConfigs = {
+    user: 'zephaniahong',
+    host: 'localhost',
+    database: 'birding',
+    port: 5432,
+  };
+}
+
 const { Pool } = pg;
 const pool = new Pool(pgConnectionConfigs);
 pool.connect();
@@ -32,7 +46,7 @@ app.get('/', (req, res) => {
   shaObj.update(unhashedCookieString);
   const hashedCookieString = shaObj.getHash('HEX');
   if (hashedCookieString !== loggedInHash) {
-    res.render('noLogin');
+    res.render('login', { loggedInHash: undefined });
     return;
   }
   pool.query('SELECT species.id, notes.id,species.name, species.scientific_name, notes.habitat, notes.date, notes.appearance, notes.vocalisations, notes.flock_size from notes INNER JOIN species ON species.id = notes.species_id', (err, result) => {
@@ -358,6 +372,6 @@ app.delete('/logout', (req, res) => {
   res.redirect('login');
 });
 
-app.listen(3000, () => {
-  console.log('listening on PORT 3000');
+app.listen(PORT, () => {
+  console.log('listening on PORT', PORT);
 });

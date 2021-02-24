@@ -1,0 +1,40 @@
+<%- include('partials/header') %><%- include('partials/navbar') %>
+<div class="container">
+  <h1>Bird Sighting</h1>
+  <ul>
+    <li>Habitat: <%=data.habitat%></li>
+    <li>Date: <%=data.date%></li>
+    <li>Appearance: <%=data.appearance%></li>
+    <li>
+      Behaviour:
+      <ol>
+        <%behaviours.forEach((behaviour)=> {%>
+        <li><%=behaviour.behaviour%></li>
+        <%})%>
+      </ol>
+    </li>
+    <li>Vocalisations: <%=data.vocalisations%></li>
+    <li>Flock Size: <%=data.flock_size%></li>
+  </ul>
+  <h2>Comments</h2>
+  <ul class="list-group">
+    <%comments.forEach((comment)=> {%>
+    <li class="list-group-item"><%=comment.user_id%>: <%=comment.content%></li>
+    <%})%>
+  </ul>
+  <form action="/note/<%=data.id%>/comment" method="POST">
+    <textarea
+      class="mt-2"
+      name="comment"
+      id="comment"
+      cols="60"
+      rows="10"
+      placeholder="Type your comment here!"
+    ></textarea>
+    <div>
+      <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

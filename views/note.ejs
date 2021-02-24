@@ -1,0 +1,82 @@
+<%- include('partials/header') %><%- include('partials/navbar') %>
+<div class="container">
+  <h1>Bird Watch Note</h1>
+  <form action="/note" method="POST">
+    <div class="form-group">
+      <label for="habitat">Habitat</label>
+      <input type="text" class="form-control" name="habitat" id="habitat" />
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="species">Species</label>
+        <select class="form-control" name="species" id="species">
+          <% species.forEach((specie)=> { %>
+          <option value="<%=specie.id%>"><%=specie.name%></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" name="date" id="date" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="appearance">Appearance</label>
+      <input
+        type="text"
+        class="form-control"
+        name="appearance"
+        id="appearance"
+      />
+    </div>
+    <div class="form-group">
+      <label for="flock-size">Flock Size</label>
+      <input
+        type="number"
+        min="1"
+        class="form-control"
+        name="flock_size"
+        id="flock-size"
+      />
+    </div>
+    <div class="form-group">
+      <label for="vocalisations">Vocalisations</label>
+      <input
+        type="text"
+        class="form-control"
+        name="vocalisations"
+        x
+        id="vocalisations"
+      />
+    </div>
+    <div class="row">
+      <%behaviours.forEach((behaviour)=> {%>
+      <div class="form-group col-sm-6 col-lg-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input
+                type="checkbox"
+                aria-label="Checkbox for following text input"
+                name="behaviour"
+                value="<%=behaviour.id%>"
+              />
+            </div>
+          </div>
+          <input
+            name="behaviour"
+            disabled
+            type="text"
+            class="form-control"
+            aria-label="Text input with checkbox"
+            value="<%=behaviour.behaviour%>"
+          />
+        </div>
+      </div>
+      <%})%>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<%- include('partials/footer') %>

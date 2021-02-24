@@ -1,0 +1,21 @@
+<%- include('partials/header') %><%- include('partials/navbar') %>
+<div class="container">
+  <div class="row">
+    <div class="card col mt-3">
+      <div class="card-body">
+        <h5 class="card-title"><%=data[0].name%></h5>
+        <p class="card-text">
+          Scientific Name: <br /><%= data[0].scientific_name%>
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <% data.forEach(element=> { %>
+        <a href="/note/<%=element.noteid%>">
+          <li class="list-group-item"><%=element.date%></li>
+        </a>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</div>
+<%-include('partials/footer') %>

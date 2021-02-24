@@ -1,0 +1,32 @@
+<%- include('partials/header') %><%- include('partials/navbar') %>
+<div class="container">
+  <h1>Bird Sighting</h1>
+  <ul>
+    <li>Habitat: <%=data.habitat%></li>
+    <li>Date: <%=data.date%></li>
+    <li>Appearance: <%=data.appearance%></li>
+    <li>
+      Behaviour:
+      <ol>
+        <%behaviours.forEach((behaviour)=> {%>
+        <li><%=behaviour.behaviour%></li>
+        <%})%>
+      </ol>
+    </li>
+    <li>Vocalisations: <%=data.vocalisations%></li>
+    <li>Flock Size: <%=data.flock_size%></li>
+  </ul>
+  <h2>Comments</h2>
+  <ul class="list-group">
+    <%comments.forEach((comment)=> {%>
+    <li class="list-group-item"><%=comment.user_id%>: <%=comment.content%></li>
+    <%})%>
+  </ul>
+  <div class="mt-2">
+    <a href="/note/<%=data.id%>/comment"
+      ><button type="submit" class="btn btn-primary">Add Comment</button></a
+    >
+  </div>
+</div>
+
+<%- include('partials/footer') %>

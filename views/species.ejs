@@ -1,0 +1,17 @@
+<%- include('partials/header') %><%- include('partials/navbar') %> 
+<div class="container">
+  <h1>Create a New Species</h1>
+  <form action="/species" method="POST">
+    <div class="row">
+      <div class="form-group col">
+      <label for="species">Species' Name</label>
+      <input type="text" class="form-control" name="name" id="species" />
+    </div>
+    <div class="form-group col">
+      <label for="species">Scientific Name</label>
+      <input type="text" class="form-control" name="scientific_name" id="species" />
+    </div>
+    </div>
+    <button type='submit' class='btn btn-primary'>Submit</button>
+</div>
+<%-include('partials/footer') %>

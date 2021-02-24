@@ -1,0 +1,12 @@
+INSERT INTO behaviours (behaviour) VALUES ('Walking');
+INSERT INTO behaviours (behaviour) VALUES ('Resting');
+INSERT INTO behaviours (behaviour) VALUES ('Mobbing');
+INSERT INTO behaviours (behaviour) VALUES ('Preening');
+INSERT INTO behaviours (behaviour) VALUES ('Bathing');
+INSERT INTO behaviours (behaviour) VALUES ('Climbing Tree');
+INSERT INTO behaviours (behaviour) VALUES ('Pecking');
+INSERT INTO behaviours (behaviour) VALUES ('Attacking');
+INSERT INTO behaviours (behaviour) VALUES ('Nesting');
+INSERT INTO behaviours (behaviour) VALUES ('Pooping');
+INSERT INTO behaviours (behaviour) VALUES ('Hovering');
+INSERT INTO behaviours (behaviour) VALUES ('Gliding');
